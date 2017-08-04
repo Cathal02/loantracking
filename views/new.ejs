@@ -1,0 +1,81 @@
+<% include partials/header.ejs %>
+<script src="init.js" type="text/javascript"></script>
+<div class="row">
+
+	<form action="/loans" method="POST" class="col s12 m6 offset-m3">
+		<h4 class="center">Add a Loan</h4>
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="first_name" name="loan[firstName]" type="text" class="validate" required >
+				<label for="first_name">First Name</label>
+			</div>
+			<div class="input-field col s6">
+				<input name="loan[lastName]" id="last_name" type="text" class="validate" required>
+				<label for="last_name">Last Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s6">
+				<input name="loan[email]" type="email" class="validate">
+				<label for="email">Email</label>
+			</div>
+			<div class="input-field col s6">
+				<input name="loan[contactNumber]" type="number" class="validate">
+				<label for="email">Number</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="number" class="validate" name="loan[amountBorrowed]">
+				<label for="amountBorrowed">Amount Borrwed</label>
+			</div>
+			<div class="input-field col s6">
+				<input type="text" class="validate" name="loan[length]">
+				<label for="Type Of Loan">Type Of Loan</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<input type="text" class="validate" name="loan[address]">
+				<label for="Address">Address</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col m6">
+				<input name="loan[dateDue]" id="birthdate" type="text" class="datepicker picker__input">
+				<label for="datepicker">Pick a Due Date</label>
+			</div>
+			<div class="input-field col m6">
+				<select name="loan[gender]">
+		      <option value="Male">Male</option>
+		      <option value="Female">Female</option>
+		      <option value="Other">Other</option>
+		    </select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<button style="width: 100%" type="submit" class=" green accent-4 waves-effect waves-light btn">Create</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script src="init.js" type="text/javascript"></script>
+<script>
+
+$('.datepicker').pickadate({
+  selectMonths: true, // Creates a dropdown to control month
+  selectYears: 15, // Creates a dropdown of 15 years to control year,
+  today: 'Today',
+  clear: 'Clear',
+  close: 'Ok',
+  closeOnSelect: false // Close upon selecting a date,
+});
+
+
+
+</script>
+
+	<% include partials/footer.ejs %>

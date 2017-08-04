@@ -1,0 +1,80 @@
+<% include partials/header %>
+	<div class="row">
+		<div class="col s12 m4 offset-m2">
+			<div class="card-panel  light-blue accent-3 hoverable">
+					<span class="flow-text white-text">Loans Repaid: <%=amountRepaid %>
+
+				  <span class="right">Amount repaid: <%=amountRepaid%></span>
+			 </div>
+		 </div>
+
+		<div class="col s12 m4">
+			<div class="card-panel  light-blue accent-3 hoverable">
+
+				<span class="flow-text white-text">
+					Loans Owed: 50
+					<span class="right">Amount owed: $2421</span>
+				</span>
+		 </div>
+
+		</div>
+
+	</div>
+
+			<div class="row">
+				<div class="col s12 m12 center">
+
+						<h3>Loans Owed</h3>
+
+						<table class="highlight centered bordered responsive-table">
+								<thead>
+									<tr>
+											<th>Name</th>
+											<th>Type</th>
+											<th>Total Amount</th>
+											<th>Remaining</th>
+											<th>Repaid</th>
+											<th>Date</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% if(loans.length > 0){ %>
+										<% loans.forEach(function(loan){ %>
+											<tr>
+												<td><%= loan.firstName%></td>
+												<td><%= loan.lastName %></td>
+												<td>$<%= loan.amountBorrowed %></td>
+												<td>$<%- loan.amountBorrowed - loan.amountRepaid %></td>
+												<td>$<%= loan.amountRepaid %></td>
+												<td><%= loan.date.toDateString() %></td>
+												<td>
+												<form id="loanform" action="/loans/<%=loan._id%>/remove?_method=DELETE" method="POST">
+													<button class="waves-effect waves-light btn-floating red " type="submit"><i class="material-icons">close</i></button>
+												</form>
+													<a class="btn-floating blue" href="/loans/<%=loan._id%>"><i class="material-icons">settings</i></a>
+
+												</td>
+											</tr>
+										<% }) %>
+									<%}%>
+
+								</tbody>
+						</table>
+
+
+
+
+
+			<script type="text/javascript">
+			$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+			});
+
+			</script>
+
+
+
+
+	<% include partials/footer %>

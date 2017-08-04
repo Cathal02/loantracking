@@ -1,0 +1,48 @@
+#loanform{
+  float: right;
+  clear: left;
+  margin-right: 10px;
+}
+
+#settingsLoanHeader{
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid white;
+  display: inline-block;
+}
+
+.collection-item h5, p{
+  display: inline-block;
+}
+.collection-item p{
+  margin: 0;
+  float: right;
+  clear: left;
+  font-weight: 500;
+}
+.inline{
+  display: inline-block;
+}
+.card-title h3{
+  margin-top: 0;
+}
+
+
+.topSpace{
+  margin-top: 20px;
+}
+.topSpaceExtra{
+  margin-top: 100px;
+}
+
+.largeButton {
+  font-size: 30px;
+  height: 1.5em;
+  width: 100%;
+  text-align: center;
+  line-height: 175%;
+}
+
+ nav {
+  background-color: #ff5252  !important;
+}
