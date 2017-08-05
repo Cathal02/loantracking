@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+
+
 mongoose.connect("mongodb://localhost/loansapp");
 
 app.get("/", function(req, res) {
@@ -25,18 +27,8 @@ app.get("/loans", function(req, res) {
     if(err){
       console.log(err);
     } else{
-        var calcRepaid = function(loan){
-          var tally = 0;
-          loan.forEach(function(loan){
-            tally += loan.amountRepaid;
-          });
-          return tally;
-        }
         var amountRepaid = calcRepaid(loans);
-        console.log("load?");
         res.render("index", {loans: loans, amountRepaid: amountRepaid});
-                console.log("load?");
-
     }
   })
 
@@ -83,3 +75,11 @@ app.delete("/loans/:id/remove", function(req, res){
 app.listen(3000, function() {
   console.log("Server started")
 });
+
+var calcRepaid = function(loan){
+  var tally = 0;
+  loan.forEach(function(loan){
+    tally += loan.amountRepaid;
+  });
+  return tally;
+}
