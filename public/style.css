@@ -60,3 +60,7 @@
 .full-button{
   width: 100%;
 }
+
+#login {
+  margin: 0 auto;
+}

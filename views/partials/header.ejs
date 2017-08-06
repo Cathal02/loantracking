@@ -15,13 +15,25 @@
 		</head>
 
 	<body>
+		<header>
 		<nav>
 			<div class="container">
 				<div class="nav-wrapper  red accent-2"> <a href="/loans" class="brand-logo left">Loan Tracking</a>
 					<ul class="right hide-on-med-and-down">
-						<li><a href="/loans/new"><i class="material-icons left">create</i>Add New Loan</a></li>
-						<li><a href="badges.html"><i class="material-icons left">search</i>Search Loans</a></li>
+						<% if(currentUser){ %>
+							<li><a href="/loans/new"><i class="material-icons left">create</i>Add New Loan</a></li>
+							<li><a href="/logout"><i class="material-icons left">arrow_forward</i>Logout</a></li>
+						<% } else{%>
+								<li><a href="/login"><i class="material-icons left">account_circle</i>Login</a></li>
+								<li><a href="/register"><i class="material-icons left">create</i>Register</a></li>
+						<% }  %>
+						<!-- Dropdown Structure -->
+					</ul>
 				</div>
 				</ul>
 			</div>
+
+
 		</nav>
+	</header>
+		<main>

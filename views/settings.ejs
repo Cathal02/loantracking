@@ -87,6 +87,44 @@
                    <button class="waves-effect waves-light light-blue accent-4 btn full-button">Extend Due Date</button>
                  </div>
                </form>
+             </div>
+             <div class="row">
+               <form action="/loans/<%=loan._id%>/setDate?_method=PUT" method="post">
+                 <div class="input-field col m3">
+           				<input name="dateDue" id="birthdate" type="text" class="datepicker picker__input" required>
+           				<label for="datepicker">Pick a Due Date</label>
+           			</div>
+                 <div class="col m9">
+                   <button class="waves-effect waves-light light-blue accent-4 btn full-button">Set Due Date</button>
+                 </div>
+               </form>
+
+             </div>
+
+             <div class="row">
+               <form action="/loans/<%=loan._id%>/addDays" method="post">
+                 <div class="col m3">
+                   <input type="number" name="paymentAmount" required placeholder="Payment Amount">
+                 </div>
+
+                 <div class="col m9">
+                   <button class="waves-effect waves-light light-blue accent-4 btn full-button">Add Payment</button>
+                 </div>
+               </form>
+             </div>
+
+             <div class="row">
+               <form action="/loans/<%=loan._id%>/remove?_method=DELETE" method="post">
+                 <div class="col m12 ">
+                      <button class="waves-effect waves-light btn full-button red accent-2">Delete</button>
+                 </div>
+
+               </form>
+             </div>
+           </div>
+
+
+
 
 
            </div>
@@ -148,9 +186,21 @@
   }
 
 
-    createNewChart("pie", myChart);
+    createNewChart("doughnut", myChart);
     createNewChart("bar", myChart2);
-    createNewChart("pie", myChart3);
+
+
+    var date = new Date();
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15, // Creates a dropdown of 15 years to control year,
+      today: 'Today',
+      clear: 'Clear',
+      close: 'Ok',
+      closeOnSelect: true,
+    	min: [date.getFullYear(), date.getMonth(), date.getDate()]
+    });
+
 </script>
 
 <% include partials/footer %>

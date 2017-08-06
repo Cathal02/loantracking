@@ -20,10 +20,8 @@
 	</div>
 
 			<div class="row">
-				<div class="col s12 m12 center">
-
+				<div class="col s12 m8 offset-m2 center">
 						<h3>Loans Owed</h3>
-
 						<table class="highlight centered bordered responsive-table">
 								<thead>
 									<tr>
@@ -47,16 +45,13 @@
 												<td>$<%= loan.amountRepaid %></td>
 												<td><%= loan.date.toDateString() %></td>
 												<td>
-												<form id="loanform" action="/loans/<%=loan._id%>/remove?_method=DELETE" method="POST">
-													<button class="waves-effect waves-light btn-floating red " type="submit"><i class="material-icons">close</i></button>
-												</form>
 													<a class="btn-floating blue" href="/loans/<%=loan._id%>"><i class="material-icons">settings</i></a>
-
 												</td>
 											</tr>
 										<% }) %>
+									<%} else {%>
+											<p class="flow-text">You currently have no existing Loans - <a href="/loans/new">Add New Loan</a></p>
 									<%}%>
-
 								</tbody>
 						</table>
 

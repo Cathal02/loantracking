@@ -64,14 +64,15 @@
 </div>
 <script src="init.js" type="text/javascript"></script>
 <script>
-
+var date = new Date();
 $('.datepicker').pickadate({
   selectMonths: true, // Creates a dropdown to control month
   selectYears: 15, // Creates a dropdown of 15 years to control year,
   today: 'Today',
   clear: 'Clear',
   close: 'Ok',
-  closeOnSelect: false // Close upon selecting a date,
+  closeOnSelect: false,
+	min: [date.getFullYear(), date.getMonth(), date.getDate()]
 });
 
 
