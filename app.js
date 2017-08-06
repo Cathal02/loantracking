@@ -47,7 +47,26 @@ app.get("/loans/:id", function(req, res){
         res.render("settings", {loan: loan})
       }
     })
+});
 
+app.post("/loans/:id/add", function(req, res){
+    Loan.findById(req.params.id, function(err, loan){
+      if(err){
+        console.log(err);
+        res.redirect("/loans");
+      } else{
+        var updatedLoan = loan;
+         updatedLoan.dateDue.setDate(loan.dateDue.getDate() + parseInt(req.body.numOfDays));
+
+        Loan.findByIdAndUpdate(req.params.id, updatedLoan, function(req, updatedLoan){
+          if(err){
+            res.redirect("/loans");
+          } else{
+            res.redirect("/loans/");
+          }
+        });
+      }
+    })
 });
 
 app.post("/loans", function(req, res) {

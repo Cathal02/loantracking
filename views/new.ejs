@@ -16,38 +16,38 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s6">
-				<input name="loan[email]" type="email" class="validate">
+				<input name="loan[email]" type="email" class="validate" required>
 				<label for="email">Email</label>
 			</div>
 			<div class="input-field col s6">
-				<input name="loan[contactNumber]" type="number" class="validate">
+				<input name="loan[contactNumber]" type="number" class="validate" required>
 				<label for="email">Number</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s6">
-				<input type="number" class="validate" name="loan[amountBorrowed]">
+				<input type="number" class="validate" name="loan[amountBorrowed]" required>
 				<label for="amountBorrowed">Amount Borrwed</label>
 			</div>
 			<div class="input-field col s6">
-				<input type="text" class="validate" name="loan[length]">
+				<input type="text" class="validate" name="loan[length]" required>
 				<label for="Type Of Loan">Type Of Loan</label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s12">
-				<input type="text" class="validate" name="loan[address]">
+				<input type="text" class="validate" name="loan[address]" required>
 				<label for="Address">Address</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col m6">
-				<input name="loan[dateDue]" id="birthdate" type="text" class="datepicker picker__input">
+				<input name="loan[dateDue]" id="birthdate" type="text" class="datepicker picker__input" required>
 				<label for="datepicker">Pick a Due Date</label>
 			</div>
 			<div class="input-field col m6">
-				<select name="loan[gender]">
+				<select name="loan[gender] required">
 		      <option value="Male">Male</option>
 		      <option value="Female">Female</option>
 		      <option value="Other">Other</option>

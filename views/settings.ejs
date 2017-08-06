@@ -14,74 +14,87 @@
 
 <div class="settings">
   <div class="row">
-    <div class="col m3">
+    <div class="col m3 hide-on-med-and-down">
         <div class="card-panel">
-          <canvas id="myChart"></canvas>
+          <canvas class="hide-on-med-and-down" id="myChart"></canvas>
         </div>
     </div>
 
 
-    <div class="col m9">
+    <div class="col m9 s12">
       <div class="container">
-        <div class="row">
-         <div class="col s12 m12 card-title center z-depth-3 topSpace">
-              <h5 id="settingsLoanHeader" class="flow-text">Client name</h5>
-              <h3><%=loan.firstName + " " + loan.lastName %></h3>
+       <div class="card">
+         <div class="card-tabs ">
+           <ul class="tabs tabs-fixed-width">
+             <li class="tab"><a href="#main" class="active">Basic Details</a></li>
+             <li class="tab hide-on-med-and-down"><a href="#graphs">Graphs</a></li>
+             <li class="tab"><a href="#settings">Settings</a></li>
+           </ul>
          </div>
-       </div>
 
-        <div class="card-tabs ">
-          <ul class="tabs tabs-fixed-width">
-            <li class="tab"><a href="#main" class="active">Basic Details</a></li>
-            <li class="tab"><a href="#graphs">Graphs</a></li>
-            <li class="tab"><a href="#test6">Settings</a></li>
-          </ul>
-        </div>
-
-        <div class="card-content">
-
-           <div class="row card-panel  z-depth-4">
-             <div class="col m12">
-               <div class="row">
-                <div id="main">
-                  <h3 class="center white-text"> Loan Details </h3>
-                   <div class="col m6">
-                      <div class="card-panel">
-                        <h5>Days Until Due: <strong><%= diffBetweenDates(loan.date, loan.dateDue)%> days</strong></h5>
-                        <div class="divider"></div>
-                        <h5>Day Started: <strong><%= loan.date.toDateString() %></strong></h5>
-                      </div>
-                    </div>
-
+         <div class="card-content">
+            <div class="row ">
+              <div class="col m12">
+                <div class="row">
+                 <div id="main">
+                   <h5 id="settingsLoanHeader" class="flow-text center-align">Client name</h5>
+                   <h3 class="center"><%=loan.firstName + " " + loan.lastName %></h3>
+                   <h3 class="center white-text"> Loan Details </h3>
                     <div class="col m6">
-                        <div class="card-panel">
-                         <!-- progress bar for days remaining -->
-                         <h5 >Amount Paid: <strong>$<%= loan.amountRepaid %></strong></h5>
-                          <div class="divider"></div>
-                         <h5>Amount Remaining: <strong>$<%- loan.amountBorrowed - loan.amountRepaid %></strong></h5>
+                       <div class="card-panel">
+                         <h5>Days Until Due: <strong><%= diffBetweenDates(loan.date, loan.dateDue)%> days</strong></h5>
+                         <div class="divider"></div>
+                         <h5>Day Started: <strong><%= loan.date.toDateString() %></strong></h5>
                        </div>
                      </div>
 
-                  <div class="row section">
-                    <h3 class="center white-text"> <strong>Contact Details</strong> </h3>
-                      <div class="col m8 offset-m2  ">
-                              <ul class="collection with-header" id="contactDetails">
-                                <li class="collection-header"><h4 class="center">Contact  Details</h4></li>
-                                  <li class="collection-item"><h5>Email: </h5> <p class="flow-text"><%=loan.email%></li>
-                                  <li class="collection-item"><h5>Phone: </h5><p class="flow-text"><%=loan.contactNumber%></li>
-                                  <li class="collection-item"><h5>Address: </h5><p class="flow-text"><%=loan.address%></li>
-                                    <li class="collection-item"><h5>Gender: </h5><p class="flow-text"><%=loan.gender%></li>
-                              </ul>
+                     <div class="col m6">
+                         <div class="card-panel">
+                          <!-- progress bar for days remaining -->
+                          <h5 >Amount Paid: <strong>$<%= loan.amountRepaid %></strong></h5>
+                           <div class="divider"></div>
+                          <h5>Amount Remaining: <strong>$<%- loan.amountBorrowed - loan.amountRepaid %></strong></h5>
+                        </div>
                       </div>
-                  </div>
+
+                   <div class="row section">
+                     <h3 class="center white-text"> <strong>Contact Details</strong> </h3>
+                       <div class="col m8 offset-m2 ">
+                               <ul class="collection with-header" id="contactDetails">
+                                 <li class="collection-header"><h4 class="center">Contact  Details</h4></li>
+                                   <li class="collection-item"><h5>Email: </h5> <p class="flow-text"><%=loan.email%></li>
+                                   <li class="collection-item"><h5>Phone: </h5><p class="flow-text"><%=loan.contactNumber%></li>
+                                   <li class="collection-item"><h5>Address: </h5><p class="flow-text"><%=loan.address%></li>
+                                    <li class="collection-item"><h5>Gender: </h5><p class="flow-text"><%=loan.gender%></li>
+                               </ul>
+                       </div>
+                   </div>
+            </div>
            </div>
-          </div>
-        </div>
-        <div id="graphs">
-          <canvas id="myChart2"></canvas>
-          <canvas id="myChart3"></canvas>
-        </div>
-      </div>
+         </div>
+
+         <div id="graphs">
+           <canvas class="hide-on-med-and-down" id="myChart2"></canvas>
+         </div>
+
+         <div id="settings">
+           <div class="row">
+               <form action="/loans/<%=loan._id%>/add" method="post">
+                 <div class="col m3">
+                   <input type="number" name="numOfDays" placeholder="Number of Days" required>
+                 </div>
+                 <div class="col m9">
+                   <button class="waves-effect waves-light light-blue accent-4 btn full-button">Extend Due Date</button>
+                 </div>
+               </form>
+
+
+           </div>
+
+         </div>
+       </div>
+       </div>
+
 
 
     </div>
@@ -93,7 +106,6 @@
   //Init variables
   let myChart = document.getElementById('myChart').getContext('2d');
   let myChart2 = document.getElementById('myChart2').getContext('2d');
-  let myChart3 = document.getElementById('myChart3').getContext('2d');
   let amountRepaid = <%=loan.amountRepaid%>;
   let amountBorrowed = <%=loan.amountBorrowed%>;
   var createNewChart = function(typeChart, target){
