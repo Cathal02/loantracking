@@ -1,71 +1,73 @@
 <% include partials/header %>
-	<div class="row">
-		<div class="col s12 m12 l4 offset-l2">
-			<ul class="collection  hoverable">
-					<li class="flow-text center-align collection-item white-text light-blue accent-3">Loans Owned:  0</span>
-					<li class="flow-text center-align collection-item white-text light-blue accent-3">Loans Repaid: <%=amountRepaid%></span>
-			 </div>
-
-		 <div class="col s12 m12 l4">
-			 <ul class="collection hoverable">
-					 <li class="flow-text center-align collection-item white-text light-blue accent-3">Amount Owned: </span>
-					 <li class="flow-text center-align collection-item white-text light-blue accent-3">Amount Repaid: </span>
-				</div>
-			</div>
-		</div>
-
-
-		</div>
-
+<div class="row">
+	<div class="col m12">
+		<ul id="tabs-swipe-demo" class="tabs tabs-fixed-width">
+			<li class="tab col s3 tabs-fixed-width"><a class="active" href="#test-swipe-1">Clients</a></li>
+			<li class="tab col s3 tabs-fixed-width"><a href="#test-swipe-2">Loans</a></li>
+		</ul>
+		<div id="test-swipe-1" class="col s12 swipeable">
 	</div>
-
+		</div>
+		<div id="test-swipe-2" class="col s12 ">
 			<div class="row">
-				<div class="col s12 m8 offset-m2 center">
-						<h3>Loans Owed</h3>
-						<table class="highlight centered bordered responsive-table">
-								<thead>
-									<tr>
-											<th>Name</th>
-											<th>Type</th>
-											<th>Total Amount</th>
-											<th>Remaining</th>
-											<th>Repaid</th>
-											<th>Date</th>
-									</tr>
-								</thead>
+				<div class="col s12 m12 l4 offset-l2">
+					<ul class="collection  hoverable">
+							<li class="flow-text center-align collection-item white-text light-blue accent-3">Loans Owned:  0</span>
+							<li class="flow-text center-align collection-item white-text light-blue accent-3">Loans Repaid: <%=amountRepaid%></span>
+					 </div>
 
-								<tbody>
-									<% if(loans.length > 0){ %>
-										<% loans.forEach(function(loan){ %>
+				 <div class="col s12 m12 l4">
+					 <ul class="collection hoverable">
+							 <li class="flow-text center-align collection-item white-text light-blue accent-3">Amount Owned: </span>
+							 <li class="flow-text center-align collection-item white-text light-blue accent-3">Amount Repaid: </span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m8 offset-m2 center">
+								<h3>Loans Owed</h3>
+								<table class="highlight centered bordered ">
+										<thead>
 											<tr>
-												<td><%= loan.firstName%></td>
-												<td><%= loan.lastName %></td>
-												<td>$<%= loan.amountBorrowed %></td>
-												<td>$<%- loan.amountBorrowed - loan.amountRepaid %></td>
-												<td>$<%= loan.amountRepaid %></td>
-												<td><%= loan.date.toDateString() %></td>
-												<td>
-													<a class="btn-floating blue" href="/loans/<%=loan._id%>"><i class="material-icons">settings</i></a>
-												</td>
+													<th>Name</th>
+													<th>Type</th>
+													<th>Total Amount</th>
+													<th>Remaining</th>
+													<th>Repaid</th>
+													<th>Date</th>
 											</tr>
-										<% }) %>
-									<%} else {%>
-											<p class="flow-text">You currently have no existing Loans - <a href="/loans/new">Add New Loan</a></p>
-									<%}%>
-								</tbody>
-						</table>
+										</thead>
 
+										<tbody>
+											<% if(user.loans.length > 0){ %>
+												<% user.loans.forEach(function(loan){ %>
+													<tr>
+														<td><%= loan.firstName%></td>
+														<td><%= loan.lastName %></td>
+														<td>$<%= loan.amountBorrowed %></td>
+														<td>$<%- loan.amountBorrowed - loan.amountRepaid %></td>
+														<td>$<%= loan.amountRepaid %></td>
+														<td><%= loan.date.toDateString() %></td>
+														<td>
+															<a class="btn-floating blue" href="/loans/<%=loan._id%>"><i class="material-icons">settings</i></a>
+														</td>
+													</tr>
+												<% }) %>
+											<%} else {%>
+													<p class="flow-text">You currently have no existing Loans - <a href="/loans/new">Add New Loan</a></p>
+											<%}%>
+										</tbody>
+								</table>
+		</div>
+		</div>
 
-
-
-
-			<script type="text/javascript">
+</div>
+<script type="text/javascript">
 			$(document).ready(function(){
 			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
 			$('.modal').modal();
 			});
-
-			</script>
+</script>
 
 
 

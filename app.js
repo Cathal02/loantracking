@@ -45,15 +45,14 @@ app.get("/", function(req, res) {
 })
 
 app.get("/loans", IsLoggedIn, function(req, res) {
-
-  Loan.find({}, function(err, loans){
+  User.findById(req.user._id).populate('loans').exec(function(err, user){
     if(err){
       console.log(err);
     } else{
-        var amountRepaid = calcRepaid(loans);
-        res.render("index", {loans: loans, amountRepaid: amountRepaid});
+        var amountRepaid = calcRepaid(user.loans);
+        res.render("index", {user: user, amountRepaid: amountRepaid});
     }
-  })
+  });
 
 });
 app.get("/loans/new", IsLoggedIn, function(req, res) {
@@ -71,6 +70,20 @@ app.get("/loans/:id", IsLoggedIn, function(req, res){
       }
     })
 });
+
+app.post("/loans", IsLoggedIn, function(req, res) {
+  var loan = req.body.loan;
+  Loan.create(loan, function(err, loan){
+    if(err){
+        console.log(err);
+    } else{
+      req.user.loans.push(loan);
+      req.user.save();
+      res.redirect("/loans");
+    }
+  })
+});
+
 
 app.post("/loans/:id/add", IsLoggedIn, function(req, res){
     Loan.findById(req.params.id, function(err, loan){
@@ -90,17 +103,6 @@ app.post("/loans/:id/add", IsLoggedIn, function(req, res){
         });
       }
     })
-});
-
-app.post("/loans", IsLoggedIn, function(req, res) {
-  var loan = req.body.loan;
-  Loan.create(loan, function(err, loan){
-    if(err){
-        console.log(err);
-    } else{
-      res.redirect("/loans");
-    }
-  })
 });
 
 app.delete("/loans/:id/remove", IsLoggedIn,function(req, res){
@@ -157,7 +159,11 @@ app.get("/register", function(req, res){
 });
 
 app.post("/register", function(req, res){
-  var newUser = new User({username: req.body.username});
+  var newUser = new User({
+    username: req.body.username,
+    firstname: req.body.firstName,
+    lastname: req.body.lastName
+  });
   User.register(newUser, req.body.password, function(err, User){
     if(err){
       console.log(err);

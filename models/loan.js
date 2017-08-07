@@ -18,4 +18,4 @@ var LoanSchema = mongoose.Schema({
 
 })
 
-module.exports = mongoose.model("Loan", LoanSchema);
+module.exports = mongoose.model("loan", LoanSchema);

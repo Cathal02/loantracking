@@ -3,15 +3,35 @@
   <div class=" col m6 offset-m3">
     <div class="card-panel">
   <form action="/register" method="post">
+    <div class="row">
+      <div class="input-field col s6">
+         <input id="first_name" name="firstName" type="text" class="validate">
+         <label for="first_name">First Name</label>
+       </div>
 
-    <div class="input-field">
-      <input id="Username" name="username" type="text" class="validate">
-      <label for="Username">Username</label>
+       <div class="input-field col s6">
+         <input id="last_name" name="lastName" type="text" class="validate">
+         <label for="last_name">Last Name</label>
+       </div>
     </div>
-    <div class="input-field">
-      <input id="Password" name="password" type="password" class="validate">
-      <label for="Password">Password</label>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="Username" name="username" type="text" class="validate">
+        <label for="Username">Username</label>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="Password" name="password" type="password" class="validate">
+        <label for="Password">Password</label>
+      </div>
+    </div>
+
+
+
+
     <button class="waves-effect waves-light btn full-button light-blue accent-3"><i class="material-icons left">create</i>Register</button>
   </form>
 </div>

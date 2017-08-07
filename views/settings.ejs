@@ -1,4 +1,5 @@
 <% include partials/header %>
+
 <%#  Functions %>
 <%
  var diffBetweenDates = function(date, dueDate){
@@ -88,10 +89,11 @@
                  </div>
                </form>
              </div>
+
              <div class="row">
-               <form action="/loans/<%=loan._id%>/setDate?_method=PUT" method="post">
+               <form id="dueDateForm" action="/loans/<%=loan._id%>/setDate?_method=PUT" method="post">
                  <div class="input-field col m3">
-           				<input name="dateDue" id="birthdate" type="text" class="datepicker picker__input" required>
+           				<input name="dateDue" id="dueDateID" type="text" class="datepicker picker__input" required>
            				<label for="datepicker">Pick a Due Date</label>
            			</div>
                  <div class="col m9">
@@ -142,10 +144,12 @@
 </div>
 <script>
   //Init variables
-  let myChart = document.getElementById('myChart').getContext('2d');
-  let myChart2 = document.getElementById('myChart2').getContext('2d');
   let amountRepaid = <%=loan.amountRepaid%>;
   let amountBorrowed = <%=loan.amountBorrowed%>;
+
+  let myChart = document.getElementById('myChart').getContext('2d');
+  let myChart2 = document.getElementById('myChart2').getContext('2d');
+  
   var createNewChart = function(typeChart, target){
     //Create our chartt object
       let amountPaidChartPie = new Chart(target, {
@@ -186,7 +190,7 @@
   }
 
 
-    createNewChart("doughnut", myChart);
+    createNewChart("pie", myChart);
     createNewChart("bar", myChart2);
 
 
@@ -199,6 +203,14 @@
       close: 'Ok',
       closeOnSelect: true,
     	min: [date.getFullYear(), date.getMonth(), date.getDate()]
+    });
+
+
+    $("#dueDateForm").submit(function(event){
+    	if($("#dueDateID").val() == ""){
+    		console.log("Stop");
+    		event.preventDefault();
+    	}
     });
 
 </script>

@@ -29,6 +29,7 @@
 				<input type="number" class="validate" name="loan[amountBorrowed]" required>
 				<label for="amountBorrowed">Amount Borrwed</label>
 			</div>
+
 			<div class="input-field col s6">
 				<input type="text" class="validate" name="loan[length]" required>
 				<label for="Type Of Loan">Type Of Loan</label>
@@ -41,11 +42,13 @@
 				<label for="Address">Address</label>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="input-field col m6">
-				<input name="loan[dateDue]" id="birthdate" type="text" class="datepicker picker__input" required>
+				<input name="loan[dateDue]" id="dueDateID" type="text" class="datepicker picker__input" required>
 				<label for="datepicker">Pick a Due Date</label>
 			</div>
+
 			<div class="input-field col m6">
 				<select name="loan[gender] required">
 		      <option value="Male">Male</option>
@@ -75,6 +78,12 @@ $('.datepicker').pickadate({
 	min: [date.getFullYear(), date.getMonth(), date.getDate()]
 });
 
+$("form").submit(function(event){
+	if($("#dueDateID").val() == ""){
+		console.log("Stop");
+		event.preventDefault();
+	}
+});
 
 
 </script>
