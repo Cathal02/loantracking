@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var LoanSchema = mongoose.Schema({
   firstName: String,
@@ -14,8 +15,8 @@ var LoanSchema = mongoose.Schema({
   amountRepaid: { type: Number, default: 0},
   loanRepaid: {type: Boolean, default: false}
 
+});
 
-
-})
+LoanSchema.plugin(deepPopulate /* more on options below */);
 
 module.exports = mongoose.model("loan", LoanSchema);

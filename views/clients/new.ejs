@@ -1,63 +1,42 @@
-<% include partials/header.ejs %>
+<% include ../partials/header.ejs %>
 <script src="init.js" type="text/javascript"></script>
 <div class="row">
 
-	<form action="/clients/<%=id%>/loans" method="POST" class="col s12 m6 offset-m3">
-		<h4 class="center">Add a Loan</h4>
+	<form action="/clients" method="POST" class="col s12 m6 offset-m3">
+		<h4 class="center">Add a New Client</h4>
 		<div class="row">
 			<div class="input-field col s6">
-				<input id="first_name" name="loan[firstName]" type="text" class="validate" required >
+				<input id="first_name" name="client[firstName]" type="text" class="validate" required >
 				<label for="first_name">First Name</label>
 			</div>
 			<div class="input-field col s6">
-				<input name="loan[lastName]" id="last_name" type="text" class="validate" required>
+				<input name="client[lastName]" id="last_name" type="text" class="validate" required>
 				<label for="last_name">Last Name</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s6">
-				<input name="loan[email]" type="email" class="validate" required>
+				<input name="client[email]" type="email" class="validate" required>
 				<label for="email">Email</label>
 			</div>
 			<div class="input-field col s6">
-				<input name="loan[contactNumber]" type="number" class="validate" required>
+				<input name="client[contactNumber]" type="number" class="validate" required>
 				<label for="email">Number</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s6">
-				<input type="number" class="validate" name="loan[amountBorrowed]" required>
-				<label for="amountBorrowed">Amount Borrwed</label>
-			</div>
-
-			<div class="input-field col s6">
-				<input type="text" class="validate" name="loan[length]" required>
-				<label for="Type Of Loan">Type Of Loan</label>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s12">
-				<input type="text" class="validate" name="loan[address]" required>
+				<input type="text" class="validate" name="client[address]" required>
 				<label for="Address">Address</label>
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col m6">
-				<input name="loan[dateDue]" id="dueDateID" type="text" class="datepicker picker__input" required>
-				<label for="datepicker">Pick a Due Date</label>
-			</div>
-
-			<div class="input-field col m6">
-				<select name="loan[gender] required">
+			<div class="input-field col s6">
+				<select name="client[gender] required">
 		      <option value="Male">Male</option>
 		      <option value="Female">Female</option>
 		      <option value="Other">Other</option>
 		    </select>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col s12">
 				<button style="width: 100%" type="submit" class=" green accent-4 waves-effect waves-light btn">Create</button>
@@ -86,7 +65,6 @@ $("form").submit(function(event){
 });
 $('select').material_select();
 
-
 </script>
 
-	<% include partials/footer.ejs %>
+	<% include ../partials/footer.ejs %>

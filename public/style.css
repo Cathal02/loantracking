@@ -13,12 +13,14 @@
 .collection-item h5, p{
   display: inline-block;
 }
+
 .collection-item p{
   margin: 0;
   float: right;
   clear: left;
   font-weight: 500;
 }
+
 .inline{
   display: inline-block;
 }
@@ -26,10 +28,10 @@
   margin-top: 0;
 }
 
-
 .topSpace{
   margin-top: 20px;
 }
+
 .topSpaceExtra{
   margin-top: 100px;
 }
@@ -43,7 +45,14 @@
 }
 
  nav {
-  background-color: #ff5252  !important;
+  background-color: #e53935      !important;
+}
+
+.collection {
+  margin-top: 30px;
+}
+.collection:hover {
+  border: none !important;
 }
 
 .settings h5{
@@ -63,4 +72,52 @@
 
 #login {
   margin: 0 auto;
+}
+
+.remove-margin {
+  margin-top: 0;
+}
+
+.clientHeader {
+  font-weight: 300;
+  vertical-align: top;
+  margin-top: 0;
+  padding-bottom: 2px;
+}
+
+.cardBackground {
+    background-color: #efefef
+}
+
+
+.icon {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.subHeader {
+  vertical-align: top;
+  padding-left: 10px;
+  width: 100%;
+
+}
+
+.cardBackgroundDark {
+  background-color: #e0e0e0 !important;
+}
+
+.clientSearch {
+  margin-top: 20px;
+}
+
+.clientCollection {
+  width: 100%;
+}
+
+.collectionInfo {
+  margin-left: 20px;
+}
+
+.card {
+  margin-bottom: 50px;
 }
