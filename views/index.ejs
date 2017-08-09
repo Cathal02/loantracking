@@ -1,4 +1,5 @@
 <% include partials/header %>
+<script src="indexInit.js" type="text/javascript"></script>
 <%
 	function getLoanAmount(client){
 		var tally = 0;
@@ -34,7 +35,7 @@
 					<div class="nav-wrapper clientSearch">
 						<form>
 							<div class="input-field">
-								<input id="search" type="search" required>
+								<input id="searchClient" type="search" placeholder="Client Name" required>
 								<label class="label-icon" for="search"><i class="material-icons">search</i></label>
 								<i class="material-icons">close</i>
 							</div>
@@ -43,38 +44,38 @@
 				</nav>
 
 				 <% clients.forEach(function(client) { %>
-					 <div class="card">
+					 <div class="card clientCards">
 						 <div class="card-content cardBackground">
-						 	<h4 class="clientHeader center"><%= client.firstName %>  <%= client.lastName %></h4>
+						 	<h4 class="clientHeader center"><strong><%= client.firstName %>  <%= client.lastName %></strong></h4>
 
 							<div class="row">
-								<div class="col m6">
+								<div class="col m6 s12">
 								<div class="collection clientCollection inline left">
-									<p class="flow-text subHeader collection-item">Total Loans: <%= client.loans.length %></p>
-									<p class="flow-text truncate subHeader collection-item">Borrowed: $<%= getLoanAmount(client); %></p>
+									<p class="flow-text subHeader collection-item">Total Loans: <span class="stronger"><%= client.loans.length %></span></p>
+									<p class="flow-text truncate subHeader collection-item">Borrowed: <span class="stronger">$<%= getLoanAmount(client); %></span></p>
 								</div>
 							</div>
 
-							<div class="col m6">
+							<div class="col m6 s12">
 								 <div class="collection clientCollection inline right">
-								 <p class="flow-text truncate subHeader collection-item ">Address: <%= client.address%></p>
-									 <p class="flow-text truncate subHeader collection-item">Nationality: Irish</p>
+								 <p class="flow-text truncate subHeader collection-item ">Address: <span class="stronger"><%= client.address%></span></p>
+									 <p class="flow-text truncate subHeader collection-item">Nationality: <span class="stronger">Irish</span></p>
 								 </div>
 							 </div>
 							</div>
 
 							 <div class="row">
- 								<div class="col m6">
+ 								<div class="col m6 s12">
 	 								<div class="collection clientCollection inline left">
-	 									<p class="flow-text subHeader collection-item">DOB: 24/07/07</p>
-	 									<p class="flow-text subHeader collection-item">Gender: <%= client.gender %></p>
+	 									<p class="flow-text subHeader collection-item">DOB: <span class="stronger">24/07/07</span></p>
+	 									<p class="flow-text subHeader collection-item">Gender: <span class="stronger"><%= client.gender %></span></p>
 	 								</div>
  							</div>
 
-								<div class="col m6">
+								<div class="col m6 s12">
 									<div class="collection clientCollection inline right">
-										<p class="flow-text truncate subHeader collection-item">Email: <%= client.emailAddress %></p>
-										<p class="flow-text truncate subHeader collection-item">Number: <%= client.contactNumber%></p>
+										<p class="flow-text truncate subHeader collection-item">Email: <span class="stronger"><%= client.emailAddress %></span></p>
+										<p class="flow-text truncate subHeader collection-item">Number: <span class="stronger"><%= client.contactNumber%></span></p>
 									</div>
 								</div>
 
@@ -82,14 +83,14 @@
 							</div>
 
 						 <div class="card-action cardBackgroundDark">
-							<a class="btn blue lighten-1  waves waves-effect" href="/clients/<%= client._id %>/settings">Settings</a>
+							<a id="clientSettingsButton" class="btn blue lighten-1 waves waves-effect" href="/clients/<%= client._id %>/settings">Settings</a>
 							<a class="btn green accent-4 waves waves-effect" href="/clients/<%= client._id %>/loans/new">Add a Loan</a>
 						 </div>
 
 					 </div>
 				 <% }); %>
 			 </div>
-		 </div>
+		   	</div>
 		 </div>
 
 	 </div>
@@ -113,14 +114,26 @@
 					 <div class="row">
 						 <div class="col s12 m8 offset-m2 center">
 								<h3>Loans Owed</h3>
-								<table class="highlight centered bordered ">
+								<nav id="loanNav">
+								 <div class="nav-wrapper clientSearch">
+									 <form>
+										 <div class="input-field">
+											 <input id="searchLoan" type="search" placeholder="Search Term"required>
+											 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+											 <i class="material-icons">close</i>
+										 </div>
+									 </form>
+								 </div>
+							 </nav>
+
+								<table class="highlight centered bordered " id="loanTable">
 										<thead>
 											<tr>
-													<th>Name</th>
-													<th>Type</th>
+													<th>First Name</th>
+													<th>Last Name</th>
 													<th>Total Amount</th>
-													<th>Remaining</th>
 													<th>Repaid</th>
+													<th>Remaining</th>
 													<th>Date</th>
 											</tr>
 										</thead>
@@ -129,17 +142,20 @@
 											<% if(clients.length > 0) { %>
 													<% clients.forEach(function(client) { %>
 														<% if(client.loans.length > 0) { %>
-															<tr>
-															 <td> Cathal</td>
-															 <td> Meagher </td>
-															 <td> $455000</td>
-															 <td>Sample  Data</td>
-															 <td> $50000</td>
-															 <td> 24/07/20</td>
-															 <td>
-															 <a class="btn-floating blue" href="#"><i class="material-icons">settings</i></a>
-																</td>
-															</tr>
+															<% client.loans.forEach(function(loan){ %>
+																<tr>
+																 <td> <%= client.firstName %></td>
+																 <td> <%= client.lastName %> </td>
+																 <td> $<%= loan.amountBorrowed %></td>
+																 <td> $<%= loan.amountRepaid %></td>
+																 <td> $<%- loan.amountBorrowed - loan.amountRepaid %></td>
+																 <td> <%= loan.date.toDateString()%></td>
+																 <td>
+																 <a class="btn-floating blue" href="/loans/<%=loan._id%>"><i class="material-icons">settings</i></a>
+																	</td>
+																</tr>
+															<% }); %>
+
 														<% } %>
 													<% }); %>
 												<% } %>
@@ -151,13 +167,6 @@
 			</div>
 	</div>
 </div>
-<script type="text/javascript">
-			$(document).ready(function(){
-			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-			$('.modal').modal();
-			});
-</script>
-
 
 
 

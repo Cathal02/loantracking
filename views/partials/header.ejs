@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<title>Loan Tracking</title>
-				<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> </head>
-
 		<link rel="stylesheet" href="/style.css">
 		  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		</head>
 
 	<body>
@@ -20,6 +19,7 @@
 			<div class="container">
 				<div class="nav-wrapper red darken-3">
 					<a href="/loans" class="brand-logo left">Loan Tracking</a>
+					<a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
 					<ul class="right hide-on-med-and-down">
 						<% if(currentUser){ %>
 							<li><a href="/clients/new"><i class="material-icons left">create</i>Add New Client</a></li>
@@ -30,9 +30,21 @@
 						<% }  %>
 						<!-- Dropdown Structure -->
 					</ul>
+					   <ul class="side-nav" id="mobile-demo">
+							 <li><h5 class="center sidenavHeader">Loan Tracking</h5></li>
+							 <li class="divider"></li>
+							 <% if(currentUser){ %>
+	 							<li><a href="/clients/new"><i class="material-icons left">create</i>Add New Client</a></li>
+	 							<li><a href="/logout"><i class="material-icons left">arrow_forward</i>Logout</a></li>
+	 						<% } else{%>
+	 								<li><a href="/login"><i class="material-icons left">account_circle</i>Login</a></li>
+	 								<li><a href="/register"><i class="material-icons left">create</i>Register</a></li>
+	 						<% }  %>
+						 </ul>
 				</div>
 				</ul>
 			</div>
 		</nav>
 	</header>
 		<main>
+						<script type="text/javascript" src="navbarInit.js"></script>

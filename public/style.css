@@ -51,9 +51,6 @@
 .collection {
   margin-top: 30px;
 }
-.collection:hover {
-  border: none !important;
-}
 
 .settings h5{
   font-size: 20px;
@@ -111,7 +108,10 @@
 }
 
 .clientCollection {
-  width: 100%;
+    width: 100%;
+}
+.stronger  {
+  font-weight: 400 !important;
 }
 
 .collectionInfo {
@@ -120,4 +120,16 @@
 
 .card {
   margin-bottom: 50px;
+}
+
+#clientSettingsButton{
+  margin-right: 10px;
+}
+
+#loanNav {
+  margin-bottom: 10px;
+}
+
+.sidenavHeader {
+  color: rgba(0,0,0,0.87);
 }
