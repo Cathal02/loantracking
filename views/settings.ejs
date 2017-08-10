@@ -41,7 +41,7 @@
                    <h5 id="settingsLoanHeader" class="flow-text center-align">Client name</h5>
                    <h3 class="center"><%=loan.firstName + " " + loan.lastName %></h3>
                    <h3 class="center white-text"> Loan Details </h3>
-                    <div class="col m6">
+                    <div class="col s12 m6">
                        <div class="card-panel">
                          <h5>Days Until Due: <strong><%= diffBetweenDates(loan.date, loan.dateDue)%> days</strong></h5>
                          <div class="divider"></div>
@@ -149,7 +149,7 @@
 
   let myChart = document.getElementById('myChart').getContext('2d');
   let myChart2 = document.getElementById('myChart2').getContext('2d');
-  
+
   var createNewChart = function(typeChart, target){
     //Create our chartt object
       let amountPaidChartPie = new Chart(target, {

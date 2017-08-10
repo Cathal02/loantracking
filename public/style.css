@@ -133,3 +133,11 @@
 .sidenavHeader {
   color: rgba(0,0,0,0.87) !important;
 }
+
+.tabsCol {
+  padding: 0 !important;
+}
+
+.tabs-fixed-width {
+  overflow-x: hidden !important;
+}
