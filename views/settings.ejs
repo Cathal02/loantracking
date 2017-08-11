@@ -121,97 +121,99 @@
                       <button class="waves-effect waves-light btn full-button red accent-2">Delete</button>
                  </div>
 
-               </form>
+                 </form>
+               </div>
              </div>
            </div>
-
-
-
-
-
-           </div>
-
          </div>
        </div>
-       </div>
-
-
-
-    </div>
-
+      </div>
     </div>
   </div>
 </div>
+</div>
 <script>
-  //Init variables
-  let amountRepaid = <%=loan.amountRepaid%>;
-  let amountBorrowed = <%=loan.amountBorrowed%>;
 
-  let myChart = document.getElementById('myChart').getContext('2d');
-  let myChart2 = document.getElementById('myChart2').getContext('2d');
+//Init variables
+let amountRepaid = <%=loan.amountRepaid%>;
+let amountBorrowed = <%=loan.amountBorrowed%>;
 
-  var createNewChart = function(typeChart, target){
-    //Create our chartt object
-      let amountPaidChartPie = new Chart(target, {
-        //Set type of chart
-      type: typeChart, //bar, pie, line, donut, radar, polar area
-      data: {
-        //Set up our labels at the bottom
-        labels: ['Amount Borrowed', 'Amount Repaid'],
-        //Set up the datas for these labels
-        datasets:
-        [
-          {
-          label: 'Amount Borrowed',
-          data: [amountBorrowed],
-          backgroundColor: ['#82b1ff'],
-          borderWidth:1,
-          borderColor:'#78909c',
-          hoverBorderWidth:3,
-          hoverBorderColor:'#546e7a'
-          },
-          {
-          label: 'Amount Repaid',
-          data: [amountRepaid],
-          backgroundColor: ['#ff8a80 ']
-          }
-      ],
+let myChart = document.getElementById('myChart').getContext('2d');
+let myChart2 = document.getElementById('myChart2').getContext('2d');
 
-
+let amountPaidChartPie = new Chart(myChart, {
+        type: 'pie',
+        data: {
+          labels: ["Borrowed", "Repaid"],
+          datasets: [{
+            backgroundColor: [
+              "#2ecc71",
+              "#3498db"
+            ],
+            data: [amountBorrowed, amountRepaid]
+          }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Amount Owed vs Amount Repaid',
+        fontSize: 25
       },
-      options: {
-        title: {
-          display: true,
-          text: 'Amount Owed vs Amount Repaid',
-          fontSize: 25
-        }
+      legend: {
+      display: false
       }
-      });
+    }
+});
+
+let amounyPaidChartBar = new Chart(myChart2, {
+  type: 'bar',
+  data: {
+    labels: ["Borrowed", "Repaid"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db"
+      ],
+      label: 'Borrowed',
+      data: [amountBorrowed, amountRepaid]
+    }, {
+      label: 'Repaid',
+      data: [30]
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Amount Owed vs Amount Repaid',
+      fontSize: 25
+    },
+    legend: {
+    display: false
+    }
   }
+});
 
 
-    createNewChart("pie", myChart);
-    createNewChart("bar", myChart2);
 
 
-    var date = new Date();
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15, // Creates a dropdown of 15 years to control year,
-      today: 'Today',
-      clear: 'Clear',
-      close: 'Ok',
-      closeOnSelect: true,
-    	min: [date.getFullYear(), date.getMonth(), date.getDate()]
-    });
+  var date = new Date();
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: true,
+    min: [date.getFullYear(), date.getMonth(), date.getDate()]
+  });
 
 
-    $("#dueDateForm").submit(function(event){
-    	if($("#dueDateID").val() == ""){
-    		console.log("Stop");
-    		event.preventDefault();
-    	}
-    });
+  $("#dueDateForm").submit(function(event){
+    if($("#dueDateID").val() == ""){
+      console.log("Stop");
+      event.preventDefault();
+    }
+  });
 
 </script>
 

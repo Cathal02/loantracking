@@ -1,0 +1,76 @@
+<% include ../partials/header %>
+<% include ../../public/loanFunctions.ejs %>
+<script src="clientSettings.js" type="text/javascript"></script>
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <h5 class="center">Client name: <strong><%= client.firstName +" "+ client.lastName%></strong></h5>
+      <div class="divider"></div>
+      <h4 class="center">Loan Details</h4>
+    </div>
+   <div class="col s12 m12 l4 offset-l2 section">
+     <ul class="collection hoverable">
+         <li class="flow-text center-align collection-item"><strong>Loans Owed:  <%- client.loans.length - findLoansPaid(client) %></strong></li>
+         <li class="flow-text center-align collection-item "><strong>Loans Repaid: <%= findLoansPaid(client) %></strong></li>
+     </ul>
+   </div>
+
+    <div class="col s12 m12 l4">
+      <ul class="collection hoverable">
+          <li class="flow-text center-align collection-item"><strong>Amount Owned: $<%= findAmountOwed(client) %></strong></li>
+          <li class="flow-text center-align collection-item"><strong>Amount Repaid: $<%= findAmountRepaid(client) %></strong></li>
+       </div>
+     </div>
+
+    <div class="col m12 section">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header active">
+                <p class="flow-text block center noMargin">Current Loans - Click to toggle</p>
+          </div>
+          <div class="collapsible-body">
+            <table class="highlight centered bordered responsive-table" id="loanTable">
+                <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Total Amount</th>
+                      <th>Repaid</th>
+                      <th>Remaining</th>
+                      <th>Date</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                        <% if(client.loans.length > 0) { %>
+                          <% client.loans.forEach(function(loan){ %>
+                            <tr>
+                             <td> <%- loan.firstName + " " + loan.lastName %></td>
+                             <td> $<%= loan.amountBorrowed %></td>
+                             <td> $<%= loan.amountRepaid %></td>
+                             <td> $<%- loan.amountBorrowed - loan.amountRepaid %></td>
+                             <td> <%= loan.date.toDateString() %> </td>
+                             <td>
+                             <a class="btn-floating blue" href="/loans/<%=loan._id%>"><i class="material-icons">settings</i></a>
+                              </td>
+                            </tr>
+                          <% }); %>
+
+                        <% } %>
+                   </tbody>
+              </table>
+            </div>
+          </li>
+    </div>
+    <div class="divider"></div>
+    <h4 class="center">Client Details</h4>
+  </div>
+</div>
+
+
+
+<script>
+
+
+
+</script>
+<% include ../partials/footer %>

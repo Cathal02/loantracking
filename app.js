@@ -15,6 +15,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const LocalStrategy = require("passport-local");
 
+
 //APP CONFIG
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -50,9 +51,7 @@ app.get("/login", function(req, res){
   res.render("login");
 });
 
-app.listen(3000, function() {
-  console.log("Server started")
-});
+app.listen(3000);
 
 var calcRepaid = function(loan){
   var tally = 0;

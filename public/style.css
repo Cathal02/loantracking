@@ -22,7 +22,7 @@
 }
 
 .inline{
-  display: inline-block;
+  display: inline-block !important;
 }
 .card-title h3{
   margin-top: 0;
@@ -73,6 +73,10 @@
 
 .remove-margin {
   margin-top: 0;
+}
+
+.noMargin{
+  margin: 0;
 }
 
 .clientHeader {
@@ -140,4 +144,12 @@
 
 .tabs-fixed-width {
   overflow-x: hidden !important;
+}
+
+.block{
+  display: block;
+}
+
+.biggerFlow{
+  font-size: 30px !important;
 }

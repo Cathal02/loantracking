@@ -1,0 +1,35 @@
+<%
+ findLoansPaid = function(client){
+  var tally = 0;
+  client.loans.forEach(function(loan){
+    if(loan.loanRepaid === true){
+      tally++;
+    }
+  });
+  return tally;
+}
+
+findAmountOwed = function(client){
+  var tally = 0;
+  client.loans.forEach(function(loan){
+    tally += loan.amountBorrowed - loan.amountRepaid;
+  });
+  return tally;
+}
+
+findAmountRepaid = function(client){
+  var tally = 0;
+  client.loans.forEach(function(loan){
+    tally += loan.amountRepaid;
+  });
+  return tally;
+}
+
+findTotalValue = function(client){
+  var tally = 0;
+  client.loans.forEach(function(loan){
+    tally += loan.amountBorrowed;
+  });
+  return tally;
+}
+%>

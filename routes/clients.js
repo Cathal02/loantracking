@@ -48,6 +48,17 @@ router.post("/:id/loans", IsLoggedIn, function(req, res) {
   });
 });
 
+router.get("/:id/settings", IsLoggedIn, function(req, res){
+  Client.findById(req.params.id).populate("loans").exec(function(err, client){
+    if(err){
+      console.log(err);
+    } else{
+      res.render("clients/settings", {client: client});
+    }
+  });
+
+});
+
 function IsLoggedIn(req, res, next){
   if(req.isAuthenticated()){
     return next();
