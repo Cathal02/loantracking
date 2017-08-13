@@ -29,7 +29,7 @@ router.get("/:id", IsLoggedIn, function(req, res){
 });
 
 
-router.post("/:id/add", IsLoggedIn, function(req, res){
+router.put("/:id/add", IsLoggedIn, function(req, res){
     Loan.findById(req.params.id, function(err, loan){
       if(err){
         console.log(err);
@@ -58,7 +58,7 @@ router.delete("/:id/remove", IsLoggedIn,function(req, res){
     });
 });
 
-router.post("/:id/addDays", IsLoggedIn, function(req, res){
+router.put("/:id/addDays", IsLoggedIn, function(req, res){
   Loan.findById(req.params.id, function(err, loan){
     if(err){
       res.redirect("/loans");

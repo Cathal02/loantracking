@@ -11,11 +11,12 @@ router.post("/",IsLoggedIn, function(req, res){
    Client.create(client, function(err, client){
      if(err) {
        console.log(err);
+             res.redirect("/");
      } else{
        User.findByIdAndUpdate(req.user._id,{$push: {"clients": client}}, function(err, user){
          if(err){
            console.log(err);
-           console.log(user);
+                 res.redirect("/");
          } else{
            res.redirect("/");
          }
@@ -34,10 +35,12 @@ router.post("/:id/loans", IsLoggedIn, function(req, res) {
   Loan.create(loan, function(err, loan){
     if(err){
         console.log(err);
+              res.redirect("/");
     } else{
         Client.findById(req.params.id, function(err, client){
         if(err){
           console.log(err);
+                res.redirect("/");
         } else{
           client.loans.push(loan);
           client.save();
@@ -52,11 +55,22 @@ router.get("/:id/settings", IsLoggedIn, function(req, res){
   Client.findById(req.params.id).populate("loans").exec(function(err, client){
     if(err){
       console.log(err);
+            res.redirect("/");
     } else{
       res.render("clients/settings", {client: client});
     }
   });
+});
 
+router.delete("/:id/remove", function(req, res){
+  Client.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      console.log(err);
+      res.redirect("/");
+    } else{
+      res.redirect("/");
+    }
+  })
 });
 
 function IsLoggedIn(req, res, next){

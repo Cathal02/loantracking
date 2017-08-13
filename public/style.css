@@ -14,7 +14,7 @@
   display: inline-block;
 }
 
-.collection-item p{
+.flow-float{
   margin: 0;
   float: right;
   clear: left;
@@ -152,4 +152,8 @@
 
 .biggerFlow{
   font-size: 30px !important;
+}
+
+.leftMargin{
+  margin-left: 10px;
 }

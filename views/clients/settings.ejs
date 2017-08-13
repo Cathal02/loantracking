@@ -10,23 +10,52 @@
     </div>
    <div class="col s12 m12 l4 offset-l2 section">
      <ul class="collection hoverable">
-         <li class="flow-text center-align collection-item"><strong>Loans Owed:  <%- client.loans.length - findLoansPaid(client) %></strong></li>
-         <li class="flow-text center-align collection-item "><strong>Loans Repaid: <%= findLoansPaid(client) %></strong></li>
+         <li class="flow-text center-align collection-item">Loans Owed:  <strong><%- client.loans.length - findLoansPaid(client) %></strong></li>
+         <li class="flow-text center-align collection-item ">Loans Repaid: <strong><%= findLoansPaid(client) %></strong></li>
      </ul>
    </div>
 
     <div class="col s12 m12 l4">
       <ul class="collection hoverable">
-          <li class="flow-text center-align collection-item"><strong>Amount Owned: $<%= findAmountOwed(client) %></strong></li>
-          <li class="flow-text center-align collection-item"><strong>Amount Repaid: $<%= findAmountRepaid(client) %></strong></li>
+          <li class="flow-text center-align collection-item">Amount Owned: <strong>$<%= findAmountOwed(client) %></strong></li>
+          <li class="flow-text center-align collection-item">Amount Repaid: <strong>$<%= findAmountRepaid(client) %></strong></li>
        </div>
      </div>
+
+    <div class="divider"></div>
+    <h4 class="center"><strong>Client Details</strong></h4>
+    <div class="row">
+          <div class="col m6">
+            <ul class="collection">
+              <li class="collection-item"><p class="flow-text">First Name:</p> <h5 class="leftMargin"><strong><%= client.firstName %></strong></h5></li>
+              <li class="collection-item"><p class="flow-text">Last Name:</p> <h5 class="leftMargin"><strong><%= client.lastName %></strong></h5></li>
+              <li class="collection-item"><p class="flow-text">Gender:</p> <h5 class="leftMargin"><strong><%= client.gender %></strong></h5></li>
+            </ul>
+          </div>
+
+          <div class="col m6">
+            <ul class="collection">
+              <li class="collection-item"><p class="flow-text">Email Address:</p> <h5 class="leftMargin"><strong><%= client.emailAddress  %></strong></h5></li>
+              <li class="collection-item"><p class="flow-text ">Contact Number:</p> <h5 class="leftMargin"><strong><%= client.contactNumber %></strong></h5></li>
+              <li class="collection-item"><p class="flow-text">Address:</p> <h5 class="leftMargin"><strong><%= client.address %></strong></h5></li>
+            </ul>
+          </div>
+    </div>
+    <div class="row">
+      <div class="col m6 offset-m3">
+        <form action="/clients/<%= client._id%>/remove?_method=DELETE" method="post">
+          <button class="btn btn-small red full-button">Delete Client</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="divider"></div>
 
     <div class="col m12 section">
       <ul class="collapsible" data-collapsible="accordion">
         <li>
-          <div class="collapsible-header active">
-                <p class="flow-text block center noMargin">Current Loans - Click to toggle</p>
+          <div class="collapsible-header">
+                <p class="flow-text block center noMargin"><em>Current Loans</em> - Click to toggle</p>
           </div>
           <div class="collapsible-body">
             <table class="highlight centered bordered responsive-table" id="loanTable">
@@ -61,8 +90,6 @@
             </div>
           </li>
     </div>
-    <div class="divider"></div>
-    <h4 class="center">Client Details</h4>
   </div>
 </div>
 

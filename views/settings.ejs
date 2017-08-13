@@ -63,10 +63,10 @@
                        <div class="col m8 offset-m2 ">
                                <ul class="collection with-header" id="contactDetails">
                                  <li class="collection-header"><h4 class="center">Contact  Details</h4></li>
-                                   <li class="collection-item"><h5>Email: </h5> <p class="flow-text"><%=loan.email%></li>
-                                   <li class="collection-item"><h5>Phone: </h5><p class="flow-text"><%=loan.contactNumber%></li>
-                                   <li class="collection-item"><h5>Address: </h5><p class="flow-text"><%=loan.address%></li>
-                                    <li class="collection-item"><h5>Gender: </h5><p class="flow-text"><%=loan.gender%></li>
+                                   <li class="collection-item "><h5>Email: </h5> <p class="flow-text flow-float"><%=loan.email%></li>
+                                   <li class="collection-item" ><h5>Phone: </h5><p class="flow-text flow-float"><%=loan.contactNumber%></li>
+                                   <li class="collection-item"><h5>Address: </h5><p class="flow-text flow-float"><%=loan.address%></li>
+                                    <li class="collection-item"><h5>Gender: </h5><p class="flow-text flow-float"><%=loan.gender%></li>
                                </ul>
                        </div>
                    </div>
@@ -80,7 +80,7 @@
 
          <div id="settings">
            <div class="row">
-               <form action="/loans/<%=loan._id%>/add" method="post">
+               <form action="/loans/<%=loan._id%>/add?_method=PUT" method="post">
                  <div class="col m3">
                    <input type="number" name="numOfDays" placeholder="Number of Days" required>
                  </div>
@@ -104,7 +104,7 @@
              </div>
 
              <div class="row">
-               <form action="/loans/<%=loan._id%>/addDays" method="post">
+               <form action="/loans/<%=loan._id%>/addDays?_method=PUT" method="post">
                  <div class="col m3">
                    <input type="number" name="paymentAmount" required placeholder="Payment Amount">
                  </div>
